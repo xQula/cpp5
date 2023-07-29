@@ -1,23 +1,9 @@
 #include "myTime.h"
 
-MyTime::MyTime(): hours_(0), minuts_(0), seconds_(0)
+MyTime::MyTime(QObject *parent):
+    QObject(parent), hours_(0), minuts_(0), seconds_(0), count_(0)
 {
 
-}
-
-int MyTime::get_hours() const
-{
-    return hours_;
-}
-
-int MyTime::get_minuts() const
-{
-    return minuts_;
-}
-
-int MyTime::get_seconds() const
-{
-    return seconds_;
 }
 
 void MyTime::reset()
@@ -29,24 +15,29 @@ void MyTime::reset()
 
 QString MyTime::out() const
 {
-    return  QString::number(this->get_hours()) + ":" +
-            QString::number(this->get_minuts()) + ":" +
-            QString::number(this->get_seconds());
+    return  QString::number(hours_) + ":" +
+            QString::number(minuts_) + ":" +
+            QString::number(seconds_);
 }
 
 MyTime &MyTime::operator++()
 {
-    ++seconds_;
-    if(seconds_ == 60){
-        seconds_ = 0;
-    ++minuts_;
-    }
-    if(minuts_ == 60){
-    minuts_ = 0;
-        ++hours_;
-    }
-    if(hours_ == 24 && minuts_ == 59 && seconds_ == 60){
-        reset();
+    ++count_;
+    if(count_ == 10){
+        count_ = 0;
+        ++seconds_;
+        if(seconds_ == 60){
+            seconds_ = 0;
+            ++minuts_;
+        }
+        if(minuts_ == 60){
+            minuts_ = 0;
+            ++hours_;
+        }
+       if(hours_ == 24 && minuts_ == 59 && seconds_ == 60){
+            reset();
+        }
+        emit sg_update_time();
     }
     return *this;
 }

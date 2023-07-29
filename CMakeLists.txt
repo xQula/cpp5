@@ -20,6 +20,8 @@ set(PROJECT_SOURCES
         mainwindow.ui
         myTime.h
         myTime.cpp
+        StopWatch.h
+        StopWatch.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

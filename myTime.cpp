@@ -15,9 +15,9 @@ void MyTime::reset()
 
 QString MyTime::out() const
 {
-    return  QString::number(hours_) + ":" +
-            QString::number(minuts_) + ":" +
-            QString::number(seconds_);
+    return  QString::number(hours_) + " ч " + ":" +
+            QString::number(minuts_) + " мин " + ":" +
+            QString::number(seconds_) + " сек";
 }
 
 MyTime &MyTime::operator++()

@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->psh_clear->setText("Clear");
     ui->psh_cycle->setText("Cycle");
     ui->pt_timeCycle->setReadOnly(true);
+    ui->psh_cycle->setEnabled(false);
     connect(this, &MainWindow::sig_psh_cycle_tap, this, &MainWindow::sl_edit_pb_cycle);
     connect(watch_, &StopWatch::sg_update_time, this, [this]{ui->lb_time->setText(watch_->out_basic_time());});
 }
@@ -27,9 +28,11 @@ void MainWindow::on_psh_startStop_toggled(bool checked)
     if(checked){
         watch_->start_timer();
         ui->psh_startStop->setText("Stop");
+        ui->psh_cycle->setEnabled(true);
     }else{
         watch_->stop_timer();
         ui->psh_startStop->setText("Start");
+        ui->psh_cycle->setEnabled(false);
     }
 }
 

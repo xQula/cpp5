@@ -37,8 +37,8 @@ MyTime &MyTime::operator++()
        if(hours_ == 24 && minuts_ == 59 && seconds_ == 60){
             reset();
         }
-        emit sg_update_time();
     }
+    emit sg_update_time();
     return *this;
 }
 

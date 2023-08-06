@@ -17,7 +17,8 @@ QString MyTime::out() const
 {
     return  QString::number(hours_) + " ч " + ":" +
             QString::number(minuts_) + " мин " + ":" +
-            QString::number(seconds_) + " сек";
+            QString::number(seconds_) + " сек " + ":" +
+            QString::number(count_) + " м.сек";
 }
 
 MyTime &MyTime::operator++()
